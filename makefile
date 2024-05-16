@@ -18,6 +18,8 @@ build_macos:
 
 build_linux:
 	mkdir -p _output/linux
+	apt-get update
+	DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --assume-yes build-essential libsqlite3-dev
 	GOOS=linux GOARCH=amd64 go build -tags "sqlite_foreign_keys linux" -ldflags="$(GO_LDFLAGS)" -o _output/linux/yarr ./cmd/yarr
 
 build_windows:
